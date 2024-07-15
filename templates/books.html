@@ -1,0 +1,23 @@
+{% extends  'base.html' %}
+{% load static %}
+{% block content %}
+    <h1>Books</h1>
+    {% if message == 'Not Fount' %}
+        <h2>{{ message }}</h2>
+    {% else %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for book in books %}
+              <div class="col">
+                <div class="card h-100">
+                  <img src="{{ book.image.url }}" alt="..." width="250px" height="220px">
+                  <div class="card-body">
+                    <a href="{% url 'book_detail' book.slug %}">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
